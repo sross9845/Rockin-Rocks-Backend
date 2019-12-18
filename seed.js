@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Rock = require('./models/rock')
+require('dotenv').config()
 
 const rocks = [
     {
@@ -55,7 +56,7 @@ function seedRocks() {
         });
     });
   }
-  mongoose.connect('mongodb://127.0.0.1/project-4', { useNewUrlParser: true });
+  mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
   mongoose.connection.once('open', () => {
     console.log('connected to MongoDB database in seed file');
     return seedRocks();
